@@ -17,6 +17,8 @@ This file reports tests, not an implied guarantee that all models, accounts, hos
 
 ## Reproduce deterministic checks
 
+The first hosted Windows CI run exposed automatic LF/CRLF conversion of a pinned JSON asset. The fix is repository-level `* -text` in `.gitattributes`, preserving resource bytes rather than weakening the hash check. A deliberately deep local marketplace-install test also exposed Git for Windows' path limit; a per-process `core.longpaths=true` override is documented, with no global Git change.
+
 In a fresh directory with Python/Pillow/NumPy available:
 
 ```powershell

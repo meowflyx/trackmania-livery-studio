@@ -39,6 +39,18 @@ codex plugin list --json
 
 This registers a **community GitHub marketplace**, not the official OpenAI directory. Refresh/restart the desktop app if the new entry is absent. In a new Work chat type `@`, select **Trackmania Livery Studio** from the menu, then describe the desired skin. Typing its name as plain text is not an installation.
 
+On Windows, a very deep checkout or custom `CODEX_HOME` can exceed Git's path limit. Prefer a short path. If installation reports `Filename too long`, the following enables long paths only for this PowerShell process and its Git child commands, without changing your global Git configuration:
+
+```powershell
+$env:GIT_CONFIG_COUNT='1'
+$env:GIT_CONFIG_KEY_0='core.longpaths'
+$env:GIT_CONFIG_VALUE_0='true'
+codex plugin marketplace add meowflyx/trackmania-livery-studio
+codex plugin add trackmania-livery-studio@trackmania-livery-studio
+```
+
+Use a fresh shell for that example if you already supply `GIT_CONFIG_*` overrides. Close it afterwards to discard the temporary settings. Repository `.gitattributes` preserves exact bytes across checkouts because the asset manifest deliberately verifies file hashes, including text assets.
+
 ```text
 @Trackmania Livery Studio Create an importable Trackmania 2020 Stadium skin inspired by Ferrari at the 2026 United States Grand Prix in Austin. Verify the exact reference, preserve editable sources and inspect the actual DDS result from all sides.
 ```
