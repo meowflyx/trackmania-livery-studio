@@ -1,0 +1,4 @@
+plugins/**/assets/vendor/** linguist-vendored
+*.bin binary
+*.dds binary
+*.zip binary

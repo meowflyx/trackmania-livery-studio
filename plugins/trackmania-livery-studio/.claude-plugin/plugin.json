@@ -1,0 +1,17 @@
+{
+  "name": "trackmania-livery-studio",
+  "version": "1.1.0-alpha.1",
+  "description": "Experimental AI-assisted Trackmania Stadium skin workflow with editable sources and DDS export.",
+  "author": {
+    "name": "meowflyx",
+    "url": "https://github.com/meowflyx"
+  },
+  "keywords": [
+    "trackmania",
+    "livery",
+    "dds",
+    "uv"
+  ],
+  "homepage": "https://github.com/meowflyx/trackmania-livery-studio",
+  "repository": "https://github.com/meowflyx/trackmania-livery-studio"
+}

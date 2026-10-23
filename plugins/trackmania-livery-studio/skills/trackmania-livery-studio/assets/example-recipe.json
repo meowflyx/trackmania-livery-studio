@@ -1,0 +1,13 @@
+{
+  "source_size": 512,
+  "materials": {
+    "Skin": {
+      "layers": [
+        {"name": "teal stationary paint", "type": "fill", "color": "#164f61", "mask": {"region": "body_static"}},
+        {"name": "separate ivory wing", "type": "fill", "color": "#ddd9c9", "mask": {"region": "wing", "inset": 2}},
+        {"name": "nose accent", "type": "fill", "color": "#d67426", "mask": {"region": "nose", "position": {"z": [125, 220]}}}
+      ],
+      "surface": [{"roughness": 0.26, "metalness": 0.05, "mask": {"region": "body"}}]
+    }
+  }
+}

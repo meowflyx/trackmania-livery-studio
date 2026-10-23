@@ -1,0 +1,96 @@
+{
+  "id": "stadium-community-carsport-2020-v1",
+  "model": "./model/scene.gltf",
+  "model_bin_sha256": "b0394253889672b9a8b367432333b09bf102d92df597977ec6c3e1a585af50ce",
+  "gltf_sha256": "ead6b940df9f6a4ad8afb7342125abb9bda2ded4a74200028234b2f8b90f944d",
+  "original_gltf_sha256": "f14e848e3b3e2b0a53040cb80032d0d39c1f257468f9c42dea12d54161c8b0c8",
+  "skin_geometry_cache_sha256": "582a23a0593955dc7e803ce483bd6bc4f20545111716fa11a21e9c496f8497a9",
+  "model_changes": "Only material definitions removed; transforms, mesh, UV and binary unchanged.",
+  "attribution": "trackmania 2020 carsport by amogusstrikesback2, CC BY 4.0; community preview mesh, not official Nadeo template.",
+  "units": "centimetres in POSITION accessors; GLTF nodes convert to metres",
+  "axes": {
+    "x": "left/right",
+    "y": "up",
+    "z": "front positive"
+  },
+  "materials": {
+    "Skin": 3,
+    "Wheels": 0,
+    "Details": 2
+  },
+  "regions": {
+    "body": [
+      1,
+      4,
+      6,
+      7,
+      10,
+      11,
+      13,
+      14,
+      25,
+      26
+    ],
+    "body_static": [
+      1,
+      4,
+      6,
+      7,
+      13,
+      14,
+      25,
+      26
+    ],
+    "dynamic_panel": [
+      10
+    ],
+    "wing": [
+      11
+    ],
+    "sides": [
+      6,
+      7
+    ],
+    "intakes": [
+      13,
+      14
+    ],
+    "nose": [
+      4
+    ],
+    "rims": [
+      0,
+      2,
+      3,
+      5,
+      12,
+      17,
+      18,
+      19,
+      24
+    ]
+  },
+  "dds": {
+    "flip_vertical_once": true,
+    "legacy_bc5_xy_fourcc": "BC5U"
+  },
+  "formats": {
+    "Skin_B": "DXT1",
+    "Skin_R": "BC5U",
+    "Details_B": "DXT1",
+    "Details_R": "BC5U",
+    "Wheels_B": "DXT1",
+    "Wheels_R": "BC5U",
+    "Wheels_N": "BC5U"
+  },
+  "required": [
+    "Skin_B.dds",
+    "Skin_R.dds",
+    "Details_B.dds",
+    "Details_R.dds",
+    "Wheels_B.dds",
+    "Wheels_R.dds",
+    "Wheels_N.dds",
+    "Icon.tga"
+  ]
+}

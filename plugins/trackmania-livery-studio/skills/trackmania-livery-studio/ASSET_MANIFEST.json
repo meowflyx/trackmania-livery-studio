@@ -1,0 +1,31 @@
+{
+  "purpose": "Pinned runtime assets; authoring files remain editable",
+  "files": {
+    "assets/example-recipe.json": "b4c6c8bc2d71c3cfe8e6dc7593d27f8a5bb28c6229e90d2aa299c2345a36f0b2",
+    "assets/stadium/geometry/Skin.npz": "582a23a0593955dc7e803ce483bd6bc4f20545111716fa11a21e9c496f8497a9",
+    "assets/stadium/model/LICENSE.txt": "4a68f397b073425f5d534ce2f6b37dfbc59e7fced3d9851f4233585a91b22620",
+    "assets/stadium/model/scene.bin": "b0394253889672b9a8b367432333b09bf102d92df597977ec6c3e1a585af50ce",
+    "assets/stadium/model/scene.gltf": "ead6b940df9f6a4ad8afb7342125abb9bda2ded4a74200028234b2f8b90f944d",
+    "assets/stadium/neutral.zip": "5b694c3096fbf05f6d5515e8d757ddfd662eefa9cff98606020e41f43ae3a3fa",
+    "assets/stadium/neutral_png/Skin_B.png": "63a5463b8d1e2c1ed59ae6cb6c4c4272aca401699538007063261f8783971e4c",
+    "assets/stadium/neutral_png/Skin_R.png": "8d5651552aca19874923dfd45ed9198f56c4e072e18dd693af84fc74ac59b632",
+    "assets/stadium/neutral_png/Wheels_B.png": "5f07eeb6ec5d3b2b281c104753cd264cf0f1efa0478bf2a4cff287ad865b3e35",
+    "assets/stadium/neutral_png/Wheels_N.png": "6490e77d3e2a4228d445feae4922a9cbff2116d810f404a310eca88f5fbca097",
+    "assets/stadium/neutral_png/Wheels_R.png": "858360a42076370537cbfa3af044fc6ff9e3410d7ea34f4625c0c71c1e648f3b",
+    "assets/stadium/profile.json": "361a670faa3d5e60a025ac6a7c515e3bc5a710c64eace050939efb7df24820d3",
+    "assets/stadium/protected/Details_B.dds": "68c41444c86c61fe1951159d261fd09abe06096878a1db6a2070f3a823f0f943",
+    "assets/stadium/protected/Details_R.dds": "8f757cc92dd2cf1c75157c4552565ba53c5ccd66ee746314ce45543385e28fcc",
+    "assets/stadium/protected/Wheels_N.dds": "22cc288765585c2ad8a9873c67feb71a00145c2192fbef6030ce6a03d5220f52",
+    "assets/vendor/DirectXTex/LICENSE": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+    "assets/vendor/DirectXTex/texconv.exe": "dcfdec10244e02cf5037fba089c55fb7e1326b1c8181742d77d15fa5cb5eef06",
+    "assets/vendor/three/build/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+    "assets/vendor/three/build/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+    "assets/vendor/three/examples/jsm/controls/OrbitControls.js": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+    "assets/vendor/three/examples/jsm/environments/RoomEnvironment.js": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+    "assets/vendor/three/examples/jsm/loaders/DDSLoader.js": "95a2b4fa7b6fc19cc1b10f3ebd9d5b063b422eb8648af6832145d4320f7ba3da",
+    "assets/vendor/three/examples/jsm/loaders/GLTFLoader.js": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+    "assets/vendor/three/examples/jsm/utils/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+    "assets/vendor/three/LICENSE": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "assets/viewer.html": "3fa6fe71b73441bfe0efbd01d96c02cf0260a90e1c4dd52c7ff19f38584b3ed6"
+  }
+}

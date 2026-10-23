@@ -1,0 +1,33 @@
+name: Validate public package
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  package-and-dds:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install Python dependencies
+        run: python -m pip install -r plugins/trackmania-livery-studio/skills/trackmania-livery-studio/scripts/requirements.txt
+      - name: Validate public files and pinned assets
+        run: python tools/validate_public.py
+      - name: Exercise legacy DDS, geometry, editable-source replay and rollback
+        shell: pwsh
+        run: |
+          $s='plugins/trackmania-livery-studio/skills/trackmania-livery-studio/scripts'
+          python "$s/studio.py" doctor
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python "$s/selftest.py" baseline
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python "$s/selftest.py" modified --work .work/ci-fixture
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python "$s/selftest.py" rollback --work .work/ci-fixture
+          exit $LASTEXITCODE
+      - name: Build and reopen distributable archives
+        run: python tools/package_release.py

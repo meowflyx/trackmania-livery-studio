@@ -1,0 +1,73 @@
+{
+  "version": "1.1.0-alpha.1",
+  "date": "2026-10-23",
+  "ai_disclosure": "Created with AI in ChatGPT Work / Codex; shared by meowflyx because it might be useful to someone besides the author.",
+  "fresh_environment": {
+    "python": "3.12.14",
+    "pillow": "13.0.0",
+    "numpy": "2.5.4"
+  },
+  "clean_package_checks": {
+    "PUBLIC_AUDIT": {
+      "exit_status": 0,
+      "stdout": "{\"status\": \"PUBLIC_VALIDATION_OK\", \"files_checked\": 63, \"pinned_assets\": 26, \"neutral_mips\": 79, \"checks\": [\"AI disclosure\", \"publisher motivation\", \"private paths\", \"credential patterns\", \"asset hashes\", \"official encoder digest\", \"licenses\", \"archive CRC/mips\"], \"game\": \"GAME_PENDING\"}\n"
+    },
+    "PACKAGES": {
+      "exit_status": 0,
+      "stdout": "PACKAGE_OK: 3 reopened archives; version=1.1.0-alpha.1; SHA256SUMS.txt\n"
+    },
+    "BASELINE": {
+      "exit_status": 0,
+      "stdout": "BASELINE_OK: neutral CRC; 79 mips decode; truncated/trailing/missing/DX10 rejected\n"
+    },
+    "MODIFIED": {
+      "exit_status": 0,
+      "stdout": "MODIFIED_OK: real UV; wing isolated; RG and flip sentinels; exact untouched maps; idempotent ORA; portable source rebuild; GAME_PENDING\n"
+    },
+    "ROLLBACK": {
+      "exit_status": 0,
+      "stdout": "ROLLBACK_OK: duplicate restored byte-exact to neutral; CRC/mips pass; modified ZIP retained\n"
+    }
+  },
+  "demo": {
+    "name": "Ember",
+    "original_ai_artwork": true,
+    "reference_images": [],
+    "generator_asset_size": [
+      1536,
+      1024
+    ],
+    "source_resolution": 2048,
+    "mips_decoded": 79,
+    "changed_entries": [
+      "Icon.tga",
+      "Skin_B.dds",
+      "Skin_R.dds",
+      "Wheels_B.dds"
+    ],
+    "zip_sha256": "46d063ae6ed8df1ea910291273b60a6c20df500fb3df897a70f4998fe3e74307",
+    "external_views_captured": 21,
+    "native_compressed_colour_mips": true,
+    "visual_inspection": "Observed front/rear/sides/top/diagonals/chase/wheel; shared body artwork follows real UVs, independent wing mark contained, number backing quiet, soft rings visible. No claim of game shader/motion equivalence.",
+    "preview": "PREVIEW_INSPECTED",
+    "game": "GAME_PENDING",
+    "public_source_replay": {
+      "passed": true,
+      "all_8_entries_byte_identical": true,
+      "fresh_environment": true
+    }
+  },
+  "provenance": {
+    "texconv": "official Microsoft may2026 asset SHA-256 digest matches",
+    "mesh": "binary Git blob matches TM-LiveSync pinned revision; distributed CC BY notice retained",
+    "third_party": "THIRD_PARTY.md"
+  },
+  "unverified": [
+    "actual Trackmania import/driving of this release",
+    "dynamic displays and wing deployment",
+    "club upload/network visibility",
+    "Claude/cloud/macOS/Linux execution",
+    "official OpenAI directory eligibility/approval"
+  ],
+  "log_policy": "Public summaries contain literal successful stage results. Machine-specific raw commands/paths stay local."
+}

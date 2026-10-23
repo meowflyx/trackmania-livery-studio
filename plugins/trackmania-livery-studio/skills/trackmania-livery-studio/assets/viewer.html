@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Trackmania Livery Studio — DDS inspection</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e7e9ed;color:#152331;font:14px system-ui}canvas{display:block}
+header{position:absolute;left:24px;top:20px;pointer-events:none}header strong{font-size:22px}header p{margin:6px 0}
+nav{position:absolute;left:24px;bottom:22px;display:flex;gap:7px}button{padding:10px;border:1px solid #bac7cf;border-radius:6px;background:#ffffffe0;cursor:pointer}
+footer{position:absolute;right:22px;bottom:22px;max-width:350px;font-size:11px;text-align:right;color:#5a6979}
+#status{position:absolute;right:24px;top:22px}.capture header,.capture nav,.capture footer,.capture #status{display:none}
+</style>
+<header><strong>Trackmania Livery Studio</strong><p>Actual compressed colour DDS mip chains</p></header>
+<div id="status">Loading…</div><canvas id="car"></canvas>
+<nav><button data-view="hero">Front ¾</button><button data-view="rear">Rear ¾</button><button data-view="left">Left</button><button data-view="side">Right</button><button data-view="top">Top</button><button data-view="chase">Chase scale</button><button data-view="wheel">Wheel</button><button id="light">Lighting / unlit</button></nav>
+<footer>Placement and compression inspection, NOT Trackmania rendering.<br>Static mesh: no working race display or wing animation.<br>Mesh: amogusstrikesback2 · CC BY 4.0</footer>
+<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {DDSLoader} from 'three/addons/loaders/DDSLoader.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+const params=new URLSearchParams(location.search);
+if(params.has('capture'))document.body.classList.add('capture');
+const lit=params.has('lit');
+const renderer=new THREE.WebGLRenderer({canvas:document.querySelector('#car'),antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.NeutralToneMapping;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#e7e9ed');
+const pmrem=new THREE.PMREMGenerator(renderer);scene.environment=pmrem.fromScene(new RoomEnvironment(),.04).texture;
+scene.environmentIntensity=.7;
+const camera=new THREE.PerspectiveCamera(33,innerWidth/innerHeight,.01,100);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=.5;controls.maxDistance=40;
+const key=new THREE.DirectionalLight(0xffffff,2.5);key.position.set(-3,7,4);scene.add(key,new THREE.HemisphereLight('#eaf0ff','#454b56',1));
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshBasicMaterial({color:'#e7e9ed'}));floor.rotation.x=-Math.PI/2;floor.position.y=-.012;scene.add(floor);
+const gltf=await new GLTFLoader().loadAsync('./model/scene.gltf');const model=gltf.scene;model.updateMatrixWorld(true);
+const box=new THREE.Box3().setFromObject(model);const center=box.getCenter(new THREE.Vector3());model.position.x-=center.x;model.position.z-=center.z;model.position.y-=box.min.y;
+const prepared={};
+for(const name of ['Skin','Wheels','Details']){
+ const map=await new DDSLoader().loadAsync(`./dds/${name}_B.dds`);
+ map.generateMipmaps=false;map.repeat.y=-1;map.offset.y=1;map.colorSpace=THREE.SRGBColorSpace;
+ map.anisotropy=Math.min(16,renderer.capabilities.getMaxAnisotropy());
+ const roughnessMap=await new THREE.TextureLoader().loadAsync(`./decoded/${name}_PBR.png`);roughnessMap.flipY=true;roughnessMap.colorSpace=THREE.NoColorSpace;
+ prepared[name]={map,roughnessMap,metalnessMap:roughnessMap};
+}
+const wheelNormal=await new THREE.TextureLoader().loadAsync('./decoded/Wheels_N.png');wheelNormal.flipY=true;prepared.Wheels.normalMap=wheelNormal;
+let meshCount=0;
+model.traverse(node=>{
+ if(!node.isMesh)return;meshCount++;
+ const name=node.material.name;
+ if(name==='Glass'){node.material=new THREE.MeshPhysicalMaterial({color:'#34434a',roughness:.25,transparent:true,opacity:.65,depthWrite:false});return;}
+ const config=prepared[name];
+ node.material=lit?new THREE.MeshPhysicalMaterial({...config,roughness:1,metalness:1,clearcoat:name==='Skin'?.03:0,clearcoatRoughness:.3,side:THREE.FrontSide}):new THREE.MeshBasicMaterial({map:config?.map,side:THREE.FrontSide});
+});scene.add(model);
+window.setView=name=>{
+ const views={hero:[3.8,2.5,4.8],rear:[-3.8,2.5,-4.8],side:[6.2,1.25,0],left:[-6.2,1.25,0],front:[0,1.8,6.5],back:[0,1.8,-6.5],top:[0,7.8,.0001],chase:[0,7.5,-11.75],wheel:[-2,1.1,-2.5]};
+ camera.position.set(...(views[name]||views.hero));controls.target.set(...(name==='wheel'?[-.85,.35,-1.22]:[0,.42,0]));controls.update();renderer.render(scene,camera);
+};
+window.setAngle=(degrees,elevation=22,distance=6.6)=>{
+ const a=degrees*Math.PI/180,e=elevation*Math.PI/180;camera.position.set(Math.sin(a)*distance*Math.cos(e),.42+Math.sin(e)*distance,Math.cos(a)*distance*Math.cos(e));controls.target.set(0,.42,0);controls.update();renderer.render(scene,camera);
+};
+for(const button of document.querySelectorAll('[data-view]'))button.onclick=()=>window.setView(button.dataset.view);
+document.querySelector('#light').onclick=()=>{params.has('lit')?params.delete('lit'):params.set('lit','1');location.search=params.toString();};
+window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});
+window.setView(params.get('view')||'hero');renderer.setAnimationLoop(()=>{controls.update();renderer.render(scene,camera);});
+window.viewerInfo={meshCount,colourMipSource:'native compressed DDS',generateMipmaps:false,lighting:lit?'APPROXIMATE':'UNLIT',game:'GAME_PENDING',mips:Object.fromEntries(Object.entries(prepared).map(([n,v])=>[n,v.map.mipmaps.length]))};
+window.viewerReady=true;window.renderer=renderer;window.camera=camera;window.scene=scene;window.model=model;
+document.querySelector('#status').textContent='Native DDS loaded · game rendering not simulated';
+</script>
+</html>

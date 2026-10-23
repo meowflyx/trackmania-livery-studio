@@ -1,0 +1,20 @@
+{
+  "name": "trackmania-livery-studio",
+  "interface": {
+    "displayName": "Trackmania Livery Studio — Community Alpha"
+  },
+  "plugins": [
+    {
+      "name": "trackmania-livery-studio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/trackmania-livery-studio"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

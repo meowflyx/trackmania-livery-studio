@@ -1,0 +1,6 @@
+interface:
+  display_name: "Trackmania Livery Studio"
+  short_description: "Editable Trackmania skins with verified DDS export"
+  default_prompt: "Use $trackmania-livery-studio to make an importable Trackmania 2020 car skin from my livery idea."
+policy:
+  allow_implicit_invocation: true

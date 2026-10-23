@@ -1,0 +1,38 @@
+{
+  "name": "trackmania-livery-studio",
+  "version": "1.1.0-alpha.1",
+  "description": "Experimental AI-assisted Trackmania Stadium skin workflow with editable sources and DDS export.",
+  "author": {
+    "name": "meowflyx",
+    "url": "https://github.com/meowflyx"
+  },
+  "keywords": [
+    "trackmania",
+    "livery",
+    "dds",
+    "uv"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Trackmania Livery Studio",
+    "shortDescription": "AI-assisted Stadium skins and verified DDS export.",
+    "longDescription": "An experimental, AI-created community workflow for Trackmania 2020 Stadium. Creates editable artwork, projects it onto audited UVs and builds DDS skin ZIPs. Windows desktop execution is required for the bundled encoder. Not affiliated with Nadeo or Ubisoft; not listed in the official OpenAI directory.",
+    "developerName": "meowflyx",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Execute"
+    ],
+    "defaultPrompt": [
+      "Сделай импортируемый скин Trackmania 2020 по моей идее."
+    ],
+    "brandColor": "#36CFB3",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "websiteURL": "https://github.com/meowflyx/trackmania-livery-studio"
+  },
+  "requires_local_executor": true,
+  "homepage": "https://github.com/meowflyx/trackmania-livery-studio",
+  "repository": "https://github.com/meowflyx/trackmania-livery-studio"
+}
