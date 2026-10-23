@@ -161,7 +161,10 @@ def texconv_path(override: str | None) -> Path:
 def run_command(args: list, log: list) -> None:
     """Run a deterministic subprocess without shell interpolation and retain evidence."""
     values = [str(value) for value in args]
-    result = subprocess.run(values, capture_output=True, text=True, check=False)
+    executable = None
+    if sys.platform == 'win32' and len(values[0]) >= 260:
+        executable = '\\\\?\\' + str(Path(values[0]).resolve())
+    result = subprocess.run(values, executable=executable, capture_output=True, text=True, check=False)
     log.append({'argv': values, 'stdout': result.stdout, 'stderr': result.stderr,
                 'exit_status': result.returncode})
     if result.returncode:

@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import shutil
 import struct
+import sys
 import zipfile
 
 import numpy as np
@@ -99,6 +100,14 @@ def modified(work: Path, encoder: Path) -> None:
     raw = sentinel_path.read_bytes()
     pixel = studio.decode_level(raw, studio.dds_levels(raw)[0]).getpixel((10, 10))
     check(abs(pixel[0] - 43) <= 2 and abs(pixel[1] - 207) <= 2, f'BC5 channels swapped: {pixel}')
+    if sys.platform == 'win32':
+        long_folder = work / 'cache/long-executable-path'
+        while len(str(long_folder / 'texconv.exe')) < 270:
+            long_folder /= 'nested-encoder-path-component'
+        long_folder.mkdir(parents=True, exist_ok=True)
+        long_encoder = long_folder / 'texconv.exe'
+        shutil.copy2(encoder, long_encoder)
+        studio.run_command([long_encoder, '--help'], log)
     corners = Image.new('RGB', (64, 64), '#0a1428')
     ImageDraw.Draw(corners).rectangle((0, 0, 31, 31), fill='#f0c020')
     corner_path = work / 'audit/orientation.dds'

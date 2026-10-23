@@ -19,6 +19,8 @@ This file reports tests, not an implied guarantee that all models, accounts, hos
 
 The first hosted Windows CI run exposed automatic LF/CRLF conversion of a pinned JSON asset. The fix is repository-level `* -text` in `.gitattributes`, preserving resource bytes rather than weakening the hash check. A deliberately deep local marketplace-install test also exposed Git for Windows' path limit; a per-process `core.longpaths=true` override is documented, with no global Git change.
 
+That deep installation additionally exposed Windows process creation failing when texconv's executable path reached 276 characters. The shared encoder runner now passes an explicit extended-length executable path on Windows when necessary. The selftest copies the pinned executable into a 270+ character path and actually launches it, so this is a regression-tested fix, not a skipped check.
+
 In a fresh directory with Python/Pillow/NumPy available:
 
 ```powershell
